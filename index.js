@@ -74,6 +74,7 @@ var formElement = document.getElementById("addForm");
 formElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
   addUser();
+  document.getElementById("addForm").reset();
 });
 // to add user using POST call
 function addUser() {
