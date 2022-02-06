@@ -4,6 +4,8 @@ var employee_data = [];
 const errorTitle = "Something Went Wrong";
 const errorDescription =
   "Our servers are getting too many requests right now and we are currently unable to fetch the employee data please try again in some time.";
+  // note POST API wont work with Netifly 
+  // reference:https://answers.netlify.com/t/axios-post-request-works-on-localhost-but-no-longer-works-after-deploying-on-netlify/5860/9
 
   const createApiURL= 'https://dummy.restapiexample.com/api/v1/create';
   const getEmployeesApiURL = 'https://dummy.restapiexample.com/api/v1/employees';
