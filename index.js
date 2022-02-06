@@ -4,9 +4,10 @@ var employee_data = [];
 const errorTitle = "Something Went Wrong";
 const errorDescription =
   "Our servers are getting too many requests right now and we are currently unable to fetch the employee data please try again in some time.";
-  const createApiURL= 'https://dummy.restapiexample.com/api/v1/create';
-  const getEmployeesApiURL = 'https://dummy.restapiexample.com/api/v1/employees';
-  const getEmployeeDetailApiURL = 'https://dummy.restapiexample.com/api/v1/employee/';
+const createApiURL = "https://dummy.restapiexample.com/api/v1/create";
+const getEmployeesApiURL = "https://dummy.restapiexample.com/api/v1/employees";
+const getEmployeeDetailApiURL =
+  "https://dummy.restapiexample.com/api/v1/employee/";
 
 // fetching the api
 var fetchEmployeeList = function () {
@@ -43,12 +44,12 @@ detailModal.addEventListener("show.bs.modal", function (event) {
   axios
     .get(getEmployeeDetailApiURL + id)
     .then(function (response) {
-        // if api call success then render the employee details
+      // if api call success then render the employee details
       const employee = response.data.data;
       var modalTitle = detailModal.querySelector(".modal-title");
       var modalBody = detailModal.querySelector(".modal-body");
       modalTitle.textContent = employee.employee_name + "'s" + " Details";
-    //   it will all the details for respective user for the given id
+      //   it will all the details for respective user for the given id
 
       modalBody.innerHTML = `
       <div>id: ${employee.id} </div>
@@ -79,7 +80,6 @@ function addUser() {
   var name = document.getElementById("inputName").value;
   var salary = document.getElementById("inputSalary").value;
   var age = document.getElementById("inputAge").value;
-
   axios
     .post(createApiURL, {
       name: name,
@@ -88,7 +88,7 @@ function addUser() {
     })
     .then(function (response) {
       const newEmployee = response.data.data;
-    //   push new employee details to existing data
+      //   push new employee details to existing data
       employee_data.push({
         employee_name: newEmployee.name,
         employee_salary: newEmployee.salary,
@@ -106,7 +106,7 @@ function updateEmployeeData() {
   const employeeDetails = document.getElementById("employeeDetails");
   employee_data.forEach((employee, idx) => {
     // Create card element
-    
+
     // if no image found for the employee render, default image
     if (!employee.profile_image) {
       employee.profile_image =
