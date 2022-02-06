@@ -4,10 +4,15 @@ var employee_data = [];
 const errorTitle = "Something Went Wrong";
 const errorDescription =
   "Our servers are getting too many requests right now and we are currently unable to fetch the employee data please try again in some time.";
+
+  const createApiURL= 'https://dummy.restapiexample.com/api/v1/create';
+  const getEmployeesApiURL = 'https://dummy.restapiexample.com/api/v1/employees';
+  const getEmployeeDetailApiURL = 'https://dummy.restapiexample.com/api/v1/employee/';
+
 // fetching the api
 var fetchEmployeeList = function () {
   axios
-    .get("http://dummy.restapiexample.com/api/v1/employees")
+    .get(getEmployeesApiURL)
     .then(function (response) {
       employee_data = response.data.data;
       //api fetched now update the DOM
@@ -37,7 +42,7 @@ detailModal.addEventListener("show.bs.modal", function (event) {
   var id = button.getAttribute("data-bs-employee-id");
   // do a api GET call to fetch empoloyee details for respective id
   axios
-    .get("http://dummy.restapiexample.com/api/v1/employee/" + id)
+    .get(getEmployeeDetailApiURL + id)
     .then(function (response) {
         // if api call success then render the employee details
       const employee = response.data.data;
@@ -67,6 +72,7 @@ function showError(modal) {
 }
 var formElement = document.getElementById("addForm");
 formElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
   addUser();
 });
 // to add user using POST call
@@ -76,7 +82,7 @@ function addUser() {
   var age = document.getElementById("inputAge").value;
 
   axios
-    .post("http://dummy.restapiexample.com/api/v1/create", {
+    .post(createApiURL, {
       name: name,
       salary: salary,
       age: age,
